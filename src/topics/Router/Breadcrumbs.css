@@ -1,0 +1,39 @@
+/* Breadcrumbs Component Styles */
+
+.breadcrumbs {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .breadcrumb-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-link:hover {
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-label {
+    font-weight: bold;
+  }
+  
+  .breadcrumb-separator {
+    margin: 0 5px;
+    color: #333;
+  }
+  
+  /* Additional styling for better visibility, adjust as needed */
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+  }
+  
+  div {
+    padding: 10px;
+    /* border: 1px solid #ddd; */
+    margin-bottom: 20px;
+  }
+  
