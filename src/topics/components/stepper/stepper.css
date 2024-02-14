@@ -1,0 +1,37 @@
+.stepper {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .step-indicator {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .step {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .step.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .step.completed {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .step-content {
+    margin-bottom: 20px;
+  }
+  
+  .step-actions button {
+    margin-right: 10px;
+  }
+  
