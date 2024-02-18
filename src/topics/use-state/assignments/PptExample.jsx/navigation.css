@@ -1,0 +1,29 @@
+
+.menu-toggle {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+} 
+.menu-icon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transition: transform 0.3s ease;
+}
+.menu-icon::before {
+  top: -6px;
+}
+.menu-icon::after {
+  top: 6px;
+}
