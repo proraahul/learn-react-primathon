@@ -4,6 +4,8 @@ import './alert.css';
 import './Tooltip.css';
 import './table.css';
 import './progressbar.css';
+import SliderComponent from '../Slider/SliderComponent';
+
 
 function Input(props) {
   console.log(props);
@@ -61,7 +63,7 @@ function ParentComponent() {
 
 }
 
-// Alert - A component that displays an alert message to the user.
+//Alert - A component that displays an alert message to the user.
 function Alert(props) {
   return (
     <div className={`alert alert-${props.type}`}>
@@ -70,7 +72,7 @@ function Alert(props) {
   )
 }
 
-// Tooltip - A component that displays a tooltip with additional information when the user hovers over a certain element.
+//Tooltip - A component that displays a tooltip with additional information when the user hovers over a certain element.
 
 function Tooltip(props) {
   return (
@@ -111,24 +113,21 @@ const data = [
   { name: "Charlie", age: 35, email: "charlie@example.com" },
 ];
 
-
 // Progress Bar
 function ProgressBar({ value, max }) {
   const percentage = Math.floor((value / max) * 100);
   return (
     <div className="progress-bar">
-      <div className="progress-bar__fill " style={{width: `${percentage}%`}}>
+      <div className="progress-bar__fill " style={{ width: `${percentage}%` }}>
         {percentage}%
       </div>
     </div>
   );
 }
 
-
 const ComponentPpt = () => {
 
   const [selectedOption, setSelectedOption] = useState('');
-
   const options = ['Option 1', 'Option 2', 'Option 3'];
 
   const handleSelect = (option) => {
@@ -139,11 +138,17 @@ const ComponentPpt = () => {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress +
-        10));
+      setProgress((prevProgress) => prevProgress >= 100 ? 0 : prevProgress+10);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+
+  // Slider - A component that displays a slider that the user can adjust to select a certain value.
+  const [value, setValue] = useState(50);
+  const handleSliderChange = (newValue) => {
+    setValue(newValue);
+  };
 
 
   return (
@@ -172,6 +177,21 @@ const ComponentPpt = () => {
       {/* <Table data={data}/> */}
 
       {/* <ProgressBar value={progress} max={100} /> */}
+
+{/* 
+      <div>
+        <SliderComponent min={0}
+          max={100}
+          step={1}
+          defaultValue={value}
+          onChange={handleSliderChange}
+        /> 
+        </div> */}
+
+
+
+        
+
 
     </div>
   )
