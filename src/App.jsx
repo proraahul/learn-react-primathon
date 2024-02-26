@@ -121,7 +121,8 @@ const App = () => {
       {/* <ComponentsDriver /> */}
       {/* <UseStateDrive /> */}
       {/* <PropsDriver /> */}
-      <PropsStateTogetherDriver />
+      {/* <PropsStateTogetherDriver /> */}
+      <UseEffectDrive />
 
     </>
   )
