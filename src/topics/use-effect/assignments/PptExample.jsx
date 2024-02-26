@@ -212,6 +212,33 @@ const PptExample = () => {
     );
   }
 
+  // Develop a React component that utilizes the useEffect hook to persist data to local storage. Save and retrieve data from local storage when the component mounts and unmounts.
+  function LocalStorageComponent() {
+    const [data, setData] = useState('');
+
+    useEffect(() => {
+      const savedData = localStorage.getItem('data');
+      if(savedData) {
+        setData(savedData);
+      }
+    }, []);
+
+    useEffect(() => {
+      localStorage.setItem('data', data);
+    }, [data]);
+    
+    return (
+    <div>
+      <input
+        type="text"
+        value={data}
+        onChange={event => setData(event.target.value)}
+        className='border'
+      />
+      <p>Saved Data: {data}</p> </div>
+    );
+  }
+
 
   return (
     <>
@@ -228,7 +255,8 @@ const PptExample = () => {
         {/* <FormComponent /> */}
         {/* <WindowSizeTracker /> */}
         {/* <QuoteComponent /> */}
-        <InfiniteScroll />
+        {/* <InfiniteScroll /> */}
+        <LocalStorageComponent />
       </div>
     </>
   )
