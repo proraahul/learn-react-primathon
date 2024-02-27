@@ -180,7 +180,7 @@ const PptExample = () => {
       };
 
       const handleScroll = () => {
-        if (
+        if(
           window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight
         ) {
           setPage(prevPage => prevPage + 1);
