@@ -250,12 +250,12 @@ const PptExample = () => {
       </div> */}
 
       <div>
-        {/* <MyComponent /> */}
-        {/* <Timer/> */}
-        {/* <FormComponent /> */}
-        {/* <WindowSizeTracker /> */}
-        {/* <QuoteComponent /> */}
-        {/* <InfiniteScroll /> */}
+        <MyComponent />
+        <Timer/>
+        <FormComponent />
+        <WindowSizeTracker />
+        <QuoteComponent />
+        <InfiniteScroll />
         <LocalStorageComponent />
       </div>
     </>
