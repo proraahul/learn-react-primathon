@@ -180,7 +180,7 @@ const PptExample = () => {
       };
 
       const handleScroll = () => {
-        if(
+        if (
           window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight
         ) {
           setPage(prevPage => prevPage + 1);
@@ -218,7 +218,7 @@ const PptExample = () => {
 
     useEffect(() => {
       const savedData = localStorage.getItem('data');
-      if(savedData) {
+      if (savedData) {
         setData(savedData);
       }
     }, []);
@@ -226,18 +226,47 @@ const PptExample = () => {
     useEffect(() => {
       localStorage.setItem('data', data);
     }, [data]);
-    
+
     return (
-    <div>
-      <input
-        type="text"
-        value={data}
-        onChange={event => setData(event.target.value)}
-        className='border'
-      />
-      <p>Saved Data: {data}</p> </div>
+      <div>
+        <input
+          type="text"
+          value={data}
+          onChange={event => setData(event.target.value)}
+          className='border'
+        />
+        <p>Saved Data: {data}</p> </div>
     );
   }
+
+
+  // Implement a React component that uses the useEffect hook to track the user's geolocation. Display the user's current coordinates on the page.
+  function GeolocationComponent() {
+    const [coords, setCoords] = useState({ 
+      lat: null, 
+      long: null 
+    });
+
+    useEffect(() => {
+     if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(position => {
+        // console.log(navigator.geolocation);
+        // console.log(position);
+        setCoords({
+          lat: position.coords.latitude,
+          long: position.coords.longitude
+        })
+      })
+     }
+    }, []);
+    return (
+    <div>
+        <p>Latitude: {coords.lat}</p>
+        <p>Longitude: {coords.long}</p> 
+      </div>
+    );
+  }
+
 
 
   return (
@@ -250,13 +279,14 @@ const PptExample = () => {
       </div> */}
 
       <div>
-        <MyComponent />
+        {/* <MyComponent />
         <Timer/>
         <FormComponent />
         <WindowSizeTracker />
         <QuoteComponent />
-        <InfiniteScroll />
-        <LocalStorageComponent />
+        <InfiniteScroll /> */}
+        {/* <LocalStorageComponent /> */}
+        <GeolocationComponent />
       </div>
     </>
   )
