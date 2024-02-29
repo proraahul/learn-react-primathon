@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import Chart from 'chart.js/auto';
 
 
 const PptExample = () => {
@@ -242,31 +242,129 @@ const PptExample = () => {
 
   // Implement a React component that uses the useEffect hook to track the user's geolocation. Display the user's current coordinates on the page.
   function GeolocationComponent() {
-    const [coords, setCoords] = useState({ 
-      lat: null, 
-      long: null 
+    const [coords, setCoords] = useState({
+      lat: null,
+      long: null
     });
 
     useEffect(() => {
-     if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(position => {
-        // console.log(navigator.geolocation);
-        // console.log(position);
-        setCoords({
-          lat: position.coords.latitude,
-          long: position.coords.longitude
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          // console.log(navigator.geolocation);
+          // console.log(position);
+          setCoords({
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          })
         })
-      })
-     }
+      }
     }, []);
     return (
-    <div>
+      <div>
         <p>Latitude: {coords.lat}</p>
-        <p>Longitude: {coords.long}</p> 
+        <p>Longitude: {coords.long}</p>
       </div>
     );
   }
 
+  // Implement a React component that uses the useEffect hook to debounce user input. Delay the execution of a search function until the user has finished typing.
+  function SearchComponent() {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const searchFunction = term => {
+      console.log('You are searching for', term);
+    }
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        searchFunction(searchTerm)
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+
+
+    return (
+      <div>
+        <label htmlFor="">Search:
+          <input type="text" className='border' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        </label>
+      </div>
+    )
+  }
+
+  // Create a React component that uses the useEffect hook to fetch data and update a chart library (e.g., Chart.js) with the fetched data.
+  const ChartComponent = () => {
+    const [userData, setUserData] = useState([]);
+    const [chartInstance, setChartInstance] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          // Fetch data from JSONPlaceholder API
+          const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+          const data = await response.json();
+          // Aggregate data to count number of posts made by each user
+          const userCounts = data.reduce((counts, post) => {
+            // console.log(counts);
+            // console.log(post);
+            counts[post.userId] = (counts[post.userId] || 0) + 1;
+            return counts;
+          }, {});
+          // Transform aggregated data into an array of objects
+          const userDataArray = Object.entries(userCounts).map(([userId, count]) => ({
+            userId: parseInt(userId),
+            count
+          }));
+          setUserData(userDataArray);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    useEffect(() => {
+      if (userData.length > 0) {
+        if (chartInstance) {
+          chartInstance.destroy(); // Destroy existing chart instance
+        }
+        const ctx = document.getElementById('myChart');
+        const newChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: userData.map(entry => entry.userId),
+            datasets: [{
+              label: 'Number of Posts',
+              data: userData.map(entry => entry.count),
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+        setChartInstance(newChartInstance);
+      }
+    }, [userData]);
+  
+    return (
+      <div className='w-[40vh]'>
+        <h2>User Post Count Chart</h2>
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
+    );
+  };
+
+  // Build a React component that uses the useEffect hook to fetch data from an API and implement pagination. Allow the user to navigate between pages and display the current page number
 
 
   return (
@@ -286,7 +384,9 @@ const PptExample = () => {
         <QuoteComponent />
         <InfiniteScroll /> */}
         {/* <LocalStorageComponent /> */}
-        <GeolocationComponent />
+        {/* <GeolocationComponent /> */}
+        {/* <SearchComponent /> */}
+        <ChartComponent />
       </div>
     </>
   )
