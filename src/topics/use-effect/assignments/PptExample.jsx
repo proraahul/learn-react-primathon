@@ -298,7 +298,7 @@ const PptExample = () => {
   const ChartComponent = () => {
     const [userData, setUserData] = useState([]);
     const [chartInstance, setChartInstance] = useState(null);
-  
+
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -322,10 +322,10 @@ const PptExample = () => {
           console.error('Error fetching data:', error);
         }
       };
-  
+
       fetchData();
     }, []);
-  
+
     useEffect(() => {
       if (userData.length > 0) {
         if (chartInstance) {
@@ -355,7 +355,7 @@ const PptExample = () => {
         setChartInstance(newChartInstance);
       }
     }, [userData]);
-  
+
     return (
       <div className='w-[40vh]'>
         <h2>User Post Count Chart</h2>
@@ -366,6 +366,71 @@ const PptExample = () => {
 
   // Build a React component that uses the useEffect hook to fetch data from an API and implement pagination. Allow the user to navigate between pages and display the current page number
 
+function PaginationComponent() {
+    const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
+    useEffect(() => {
+      const fetchData = () => {
+        fetch(`https://jsonplaceholder.typicode.com`)
+          .then(response => response.json())
+          .then(data => setData(data));
+          console.log(data);
+      };
+      fetchData();
+    }, [page]);
+    return (
+      <div>
+        {data.map(item => <p key={item.id}>{item.name}</p>)}
+        <button onClick={() => setPage(prevPage => prevPage - 1)} disabled={page === 1}>Previous Page</button> <span>Page {page}</span>
+        <button onClick={() => setPage(prevPage => prevPage + 1)}>Next Page</button>
+      </div>);
+  }
+
+  // Develop a React component that uses the useEffect hook to perform a certain action after a specified delay (e.g., displaying a notification after 5 seconds).
+  function DelayedActionComponent() {
+
+    useEffect(() => {
+
+        var timer = setTimeout(() => {
+          console.log("print after 5 seconds");
+        }, 5000);
+     
+
+      return () => {
+        clearTimeout(timer)
+      };
+    }, []);
+
+    return(
+      <div>Component</div>
+    )
+  }
+
+  // Implement a React component that uses the useEffect hook to track the user's online/offline status. Display a message indicating the user's current status.
+  function OnlineStatusComponent(){
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+    useEffect(() => {
+      
+      const handleOnline = ()=> setIsOnline(true);
+      const handleOffline = ()=> setIsOnline(false);
+      
+      window.addEventListener('online', handleOnline);
+      window.addEventListener('offline', handleOffline);
+
+      return ()=>{
+        window.removeEventListener('online', handleOnline);
+        window.removeEventListener('offline', handleOffline);
+      }
+
+      
+    }, []);
+    return(
+        <div>
+          {isOnline? 'Online' : 'Offline'}
+        </div>
+    )
+  }
 
   return (
     <>
@@ -386,7 +451,10 @@ const PptExample = () => {
         {/* <LocalStorageComponent /> */}
         {/* <GeolocationComponent /> */}
         {/* <SearchComponent /> */}
-        <ChartComponent />
+        {/* <ChartComponent /> */}
+        {/* <PaginationComponent /> */}
+        {/* <DelayedActionComponent   /> */}
+        <OnlineStatusComponent />
       </div>
     </>
   )
