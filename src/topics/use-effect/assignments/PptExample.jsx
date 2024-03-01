@@ -379,8 +379,8 @@ const PptExample = () => {
       fetchData();
     }, [page]);
     return (
-      <div className='m-5 p-3 border'> 
-      <h1 className='font-bold text-center text-2xl'>PAGINATION</h1>
+      <div className='m-5 p-3 border'>
+        <h1 className='font-bold text-center text-2xl'>PAGINATION</h1>
         {data.map(item => <p key={item.id} className='p-1 underline text-red-700'>{item.name}</p>)}
         <button className='border p-2 font-bold' onClick={() => setPage(prevPage => prevPage - 1)} disabled={page === 1}>Previous Page</button> <span className='font-bold text-teal-900'>Page {page}</span>
         <button className='border p-2 font-bold' onClick={() => setPage(prevPage => prevPage + 1)}>Next Page</button>
@@ -434,45 +434,45 @@ const PptExample = () => {
   }
 
   // Create a React component that uses the useEffect hook to fetch and display data from a paginated API. Load and display more data when the user reaches the bottom of the page.
-  function PaginationDataComponent(){
+  function PaginationDataComponent() {
     const [data, setData] = useState([])
     const [page, setPage] = useState(1)
 
     useEffect(() => {
       const fetchData = () => {
         fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=80`)
-        .then(response => response.json())
-        .then(resData => {
-          // console.log(resData);
-          setData(resData);
-        });
+          .then(response => response.json())
+          .then(resData => {
+            // console.log(resData);
+            setData(resData);
+          });
       }
-    fetchData();     
+      fetchData();
     }, [page]);
 
     useEffect(() => {
 
-      const handleScroll =()=> {
-          if(window.innerWidth+window.screenY >= document.body.offsetHeight){
-            setPage(prevPage => prevPage + 1);
-          }
+      const handleScroll = () => {
+        if (window.innerWidth + window.screenY >= document.body.offsetHeight) {
+          setPage(prevPage => prevPage + 1);
+        }
       };
 
       window.addEventListener('scroll', handleScroll)
-  
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
 
     }, []);
 
 
 
 
-    return(
+    return (
       <div>
-        {data.map((item)=>{
-          return(
+        {data.map((item) => {
+          return (
             <p key={item.id}>{item.name}</p>
           )
         })}
@@ -481,6 +481,50 @@ const PptExample = () => {
 
   }
 
+  // Build a React component that uses the useEffect hook to fetch and display random images from an API. Fetch a new image every 5 seconds.
+
+  function RandomImageComponent() {
+    const [imgData, setImgData] = useState('');
+
+    const getImg = () => {
+      const fetchImg = fetch('https://random.imagecdn.app/500/150');
+
+      fetchImg
+      .then(response => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log('error', error));
+
+      return fetchImg;
+
+    }
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        getImg();
+      }, 1000);
+
+      return () => clearInterval(timer);
+
+    }, []);
+
+
+
+    return (
+<>
+      {/* {
+        imgData.map((item) => {
+          return(
+            <div key={item.id}>
+              <img src={item.url} alt={item.url} />
+            </div>
+          )
+        })
+       } */}
+</>
+    )
+  }
+
+  
 
 
 
@@ -500,7 +544,7 @@ const PptExample = () => {
       </div> */}
 
       <div>
-      {/* <MyComponent /> */}
+        {/* <MyComponent /> */}
         {/* <Timer/> */}
         {/* <FormComponent /> */}
         {/* <WindowSizeTracker /> */}
@@ -513,7 +557,8 @@ const PptExample = () => {
         {/* <PaginationComponent /> */}
         {/* <DelayedActionComponent   /> */}
         {/* <OnlineStatusComponent /> */}
-        <PaginationDataComponent />
+        {/* <PaginationDataComponent /> */}
+        {/* <RandomImageComponent /> */}
       </div>
     </>
   )
