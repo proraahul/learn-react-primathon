@@ -366,23 +366,24 @@ const PptExample = () => {
 
   // Build a React component that uses the useEffect hook to fetch data from an API and implement pagination. Allow the user to navigate between pages and display the current page number
 
-function PaginationComponent() {
+  function PaginationComponent() {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     useEffect(() => {
       const fetchData = () => {
-        fetch(`https://jsonplaceholder.typicode.com`)
+        fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=20`)
           .then(response => response.json())
           .then(data => setData(data));
-          console.log(data);
+        console.log(data);
       };
       fetchData();
     }, [page]);
     return (
-      <div>
-        {data.map(item => <p key={item.id}>{item.name}</p>)}
-        <button onClick={() => setPage(prevPage => prevPage - 1)} disabled={page === 1}>Previous Page</button> <span>Page {page}</span>
-        <button onClick={() => setPage(prevPage => prevPage + 1)}>Next Page</button>
+      <div className='m-5 p-3 border'> 
+      <h1 className='font-bold text-center text-2xl'>PAGINATION</h1>
+        {data.map(item => <p key={item.id} className='p-1 underline text-red-700'>{item.name}</p>)}
+        <button className='border p-2 font-bold' onClick={() => setPage(prevPage => prevPage - 1)} disabled={page === 1}>Previous Page</button> <span className='font-bold text-teal-900'>Page {page}</span>
+        <button className='border p-2 font-bold' onClick={() => setPage(prevPage => prevPage + 1)}>Next Page</button>
       </div>);
   }
 
@@ -391,46 +392,103 @@ function PaginationComponent() {
 
     useEffect(() => {
 
-        var timer = setTimeout(() => {
-          console.log("print after 5 seconds");
-        }, 5000);
-     
+      var timer = setTimeout(() => {
+        console.log("print after 5 seconds");
+      }, 5000);
+
 
       return () => {
         clearTimeout(timer)
       };
     }, []);
 
-    return(
+    return (
       <div>Component</div>
     )
   }
 
   // Implement a React component that uses the useEffect hook to track the user's online/offline status. Display a message indicating the user's current status.
-  function OnlineStatusComponent(){
+  function OnlineStatusComponent() {
     const [isOnline, setIsOnline] = useState(navigator.onLine);
 
     useEffect(() => {
-      
-      const handleOnline = ()=> setIsOnline(true);
-      const handleOffline = ()=> setIsOnline(false);
-      
+
+      const handleOnline = () => setIsOnline(true);
+      const handleOffline = () => setIsOnline(false);
+
       window.addEventListener('online', handleOnline);
       window.addEventListener('offline', handleOffline);
 
-      return ()=>{
+      return () => {
         window.removeEventListener('online', handleOnline);
         window.removeEventListener('offline', handleOffline);
       }
 
-      
+
     }, []);
-    return(
-        <div>
-          {isOnline? 'Online' : 'Offline'}
-        </div>
+    return (
+      <div>
+        {isOnline ? 'Online' : 'Offline'}
+      </div>
     )
   }
+
+  // Create a React component that uses the useEffect hook to fetch and display data from a paginated API. Load and display more data when the user reaches the bottom of the page.
+  function PaginationDataComponent(){
+    const [data, setData] = useState([])
+    const [page, setPage] = useState(1)
+
+    useEffect(() => {
+      const fetchData = () => {
+        fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=80`)
+        .then(response => response.json())
+        .then(resData => {
+          // console.log(resData);
+          setData(resData);
+        });
+      }
+    fetchData();     
+    }, [page]);
+
+    useEffect(() => {
+
+      const handleScroll =()=> {
+          if(window.innerWidth+window.screenY >= document.body.offsetHeight){
+            setPage(prevPage => prevPage + 1);
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll)
+  
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, []);
+
+
+
+
+    return(
+      <div>
+        {data.map((item)=>{
+          return(
+            <p key={item.id}>{item.name}</p>
+          )
+        })}
+      </div>
+    )
+
+  }
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -442,19 +500,20 @@ function PaginationComponent() {
       </div> */}
 
       <div>
-        {/* <MyComponent />
-        <Timer/>
-        <FormComponent />
-        <WindowSizeTracker />
-        <QuoteComponent />
-        <InfiniteScroll /> */}
+      {/* <MyComponent /> */}
+        {/* <Timer/> */}
+        {/* <FormComponent /> */}
+        {/* <WindowSizeTracker /> */}
+        {/* <QuoteComponent /> */}
+        {/* <InfiniteScroll /> */}
         {/* <LocalStorageComponent /> */}
         {/* <GeolocationComponent /> */}
         {/* <SearchComponent /> */}
         {/* <ChartComponent /> */}
         {/* <PaginationComponent /> */}
         {/* <DelayedActionComponent   /> */}
-        <OnlineStatusComponent />
+        {/* <OnlineStatusComponent /> */}
+        <PaginationDataComponent />
       </div>
     </>
   )
