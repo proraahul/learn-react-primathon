@@ -524,7 +524,45 @@ const PptExample = () => {
     )
   }
 
-  
+  // You are building a simple todo list app in React. You want to fetch the todo items from an API when the component mounts, and you also want to update the list of todos whenever a new todo is added or deleted.
+  function TodoListApp(){
+    const [todos, setTodos] = useState([]);
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+
+    useEffect(() => {
+      
+      fetch(apiUrl)
+      .then(response => response.json())
+      .then((data) => setTodos(data))
+      .catch((err)=>{console.log("Error", err)});
+
+    }, []);
+
+    const handleNewTodo = () => {
+
+    }
+
+
+    return(
+        <div>
+          <h1>TodoListApp</h1>
+          <form onSubmit={handleNewTodo}>
+            <input type="text" className='border'/>
+            <button type='submit'>Add Todo</button>
+          </form>
+          {
+            todos.map((todo)=>{
+              return(
+                <div key={todo.id} className='flex justify-between w-[60vh]'>
+                    <p>{todo.title}</p>
+                    <button>Remove</button>
+                </div>
+              )
+            })
+          }
+        </div>
+    )
+  }
 
 
 
@@ -559,6 +597,7 @@ const PptExample = () => {
         {/* <OnlineStatusComponent /> */}
         {/* <PaginationDataComponent /> */}
         {/* <RandomImageComponent /> */}
+        <TodoListApp />
       </div>
     </>
   )
