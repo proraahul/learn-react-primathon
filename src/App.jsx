@@ -27,6 +27,9 @@ import ComponentsDriver from "./topics/components";
 import PropsDriver from "./topics/props";
 import UseEffectDrive from "./topics/use-effect";
 import PropsStateTogetherDriver from "./topics/props-state";
+import UseContextDrive from "./topics/use-context/UseContextDrive";
+import UseRefDrive from "./topics/use-ref";
+import UseReducerDrive from "./topics/use-reducer";
 
 const Home = () => <div>Home</div>;
 const Category = () => <div>Category</div>;
@@ -122,7 +125,10 @@ const App = () => {
       {/* <UseStateDrive /> */}
       {/* <PropsDriver /> */}
       {/* <PropsStateTogetherDriver /> */}
-      <UseEffectDrive />
+      {/* <UseEffectDrive /> */}
+      {/* <UseContextDrive /> */}
+      {/* <UseRefDrive /> */}
+      <UseReducerDrive />
 
     </>
   )
