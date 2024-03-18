@@ -30,6 +30,8 @@ import PropsStateTogetherDriver from "./topics/props-state";
 import UseContextDrive from "./topics/use-context/UseContextDrive";
 import UseRefDrive from "./topics/use-ref";
 import UseReducerDrive from "./topics/use-reducer";
+import FormDrive from "./topics/FormDrive/FormDrive";
+import CreatePostForm from "./topics/FormDrive/CreatePostForm";
 
 const Home = () => <div>Home</div>;
 const Category = () => <div>Category</div>;
@@ -128,7 +130,9 @@ const App = () => {
       {/* <UseEffectDrive /> */}
       {/* <UseContextDrive /> */}
       {/* <UseRefDrive /> */}
-      <UseReducerDrive />
+      {/* <UseReducerDrive /> */}
+      {/* <FormDrive /> */}
+      <CreatePostForm />
 
     </>
   )
