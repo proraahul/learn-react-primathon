@@ -32,6 +32,10 @@ import UseRefDrive from "./topics/use-ref";
 import UseReducerDrive from "./topics/use-reducer";
 import FormDrive from "./topics/FormDrive/FormDrive";
 import CreatePostForm from "./topics/FormDrive/CreatePostForm";
+import { Route, Routes } from "react-router-dom";
+import Posts from "./topics/Posts";
+import EditPost from "./topics/Posts/EditPost";
+import CreatePost from "./topics/Posts/CreatePost";
 
 const Home = () => <div>Home</div>;
 const Category = () => <div>Category</div>;
@@ -121,8 +125,22 @@ const App = () => {
     // Do something with the selected option
   };
 
+  const Home = () => {
+    return (
+      <h1>Hello , I am Home</h1>
+    )
+  }
+
   return (
     <>
+
+<Routes>
+  <Route path="/" element={<Home />}/>
+  <Route path="/posts" element={<Posts />}/>
+  <Route path="/posts/:postId/edit" element={<EditPost />}/>
+  <Route path="/posts/create" element={<CreatePost />}/>
+</Routes>
+
       {/* <ComponentsDriver /> */}
       {/* <UseStateDrive /> */}
       {/* <PropsDriver /> */}
@@ -132,7 +150,8 @@ const App = () => {
       {/* <UseRefDrive /> */}
       {/* <UseReducerDrive /> */}
       {/* <FormDrive /> */}
-      <CreatePostForm />
+      {/* <CreatePostForm /> */}
+      
 
     </>
   )
