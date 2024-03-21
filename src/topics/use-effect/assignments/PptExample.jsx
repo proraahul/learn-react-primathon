@@ -525,8 +525,9 @@ const PptExample = () => {
   }
 
   // You are building a simple todo list app in React. You want to fetch the todo items from an API when the component mounts, and you also want to update the list of todos whenever a new todo is added or deleted.
-  function TodoListApp(){
+  function TodoListApp(){  
     const [todos, setTodos] = useState([]);
+    const [input, setInput] = useState();
     const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
 
     useEffect(() => {
@@ -538,8 +539,26 @@ const PptExample = () => {
 
     }, []);
 
-    const handleNewTodo = () => {
+    const handleNewTodo = (e) => {
+      e.preventDefault();
 
+        if(!input) return;
+        // Push the new todo into our array
+        const newTodos = [
+          { 
+            id: Math.floor(Math.random() * 999), 
+            title: input
+          },
+          ...todos
+        ];
+        // Reset the state of "input" after we add it to todos
+        setTodos(newTodos);
+        setInput('');
+    };
+
+    const removeTodo = (id) =>{
+      const filteredTodos = todos.filter((todo) => todo.id !== id );
+      setTodos(filteredTodos);
     }
 
 
@@ -547,7 +566,7 @@ const PptExample = () => {
         <div>
           <h1>TodoListApp</h1>
           <form onSubmit={handleNewTodo}>
-            <input type="text" className='border'/>
+            <input type="text" className='border' onChange={(e) =>  setInput(e.target.value)}/>
             <button type='submit'>Add Todo</button>
           </form>
           {
@@ -555,7 +574,7 @@ const PptExample = () => {
               return(
                 <div key={todo.id} className='flex justify-between w-[60vh]'>
                     <p>{todo.title}</p>
-                    <button>Remove</button>
+                    <button onClick={() =>removeTodo(todo.id)}>Remove</button>
                 </div>
               )
             })
@@ -573,17 +592,9 @@ const PptExample = () => {
 
 
   return (
-    <>
-      {/* <div>
-        <p>Count: {count}</p>
-        <button onClick={() => setCount((prevCount) => prevCount + 1)}>
-          Increment Count
-        </button>
-      </div> */}
-
       <div>
         {/* <MyComponent /> */}
-        {/* <Timer/> */}
+        <Timer/>
         {/* <FormComponent /> */}
         {/* <WindowSizeTracker /> */}
         {/* <QuoteComponent /> */}
@@ -597,9 +608,8 @@ const PptExample = () => {
         {/* <OnlineStatusComponent /> */}
         {/* <PaginationDataComponent /> */}
         {/* <RandomImageComponent /> */}
-        <TodoListApp />
+        {/* <TodoListApp /> */}
       </div>
-    </>
   )
 }
 
