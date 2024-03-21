@@ -67,10 +67,11 @@ const CreatePostForm = () => {
                 <h2>Posts</h2>
                 <ul>
                     {
-                        posts.map(post => 
-                            <li key={post.id}>{post.title}</li>
-                            <li>{post.body}</li>
-                        )}
+                        // posts.map(post => 
+                        //     <li key={post.id}>{post.title}</li>
+                        //     <li>{post.body}</li>
+                        // )
+                        }
                 </ul>
 
             </div>
