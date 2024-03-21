@@ -3,7 +3,13 @@ import Header from '../components/Header';
 import PostCard from './PostCard';
 
 const Posts = () => {
-    // const [posts, setPosts] = useState([]);
+    const post = useSelector((state)=> state.post.posts);
+    const  dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPostAction());
+    }, [dispatch]);
+
   return (
     <>
         <Header />

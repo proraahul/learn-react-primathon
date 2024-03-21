@@ -27,9 +27,9 @@ const PostCard = (props) => {
 <p className='my-4'>{data.body}</p>
 <p>
     {
-        data?.tags?.map((tag) => (
-            {tag}
-        ))
+        // data?.tags?.map((tag) => (
+        //     {tag}
+        // ))
     }
 </p>
 
