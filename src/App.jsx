@@ -36,6 +36,7 @@ import { Route, Routes } from "react-router-dom";
 import Posts from "./topics/Posts";
 import EditPost from "./topics/Posts/EditPost";
 import CreatePost from "./topics/Posts/CreatePost";
+import AuthAppDrive from "./topics/use-context/auth/AuthApp";
 
 const Home = () => <div>Home</div>;
 const Category = () => <div>Category</div>;
@@ -134,24 +135,24 @@ const App = () => {
   return (
     <>
 
-<Routes>
+{/* <Routes>
   <Route path="/" element={<Home />}/>
   <Route path="/posts" element={<Posts />}/>
   <Route path="/posts/:postId/edit" element={<EditPost />}/>
   <Route path="/posts/create" element={<CreatePost />}/>
-</Routes>
+</Routes> */}
 
       {/* <ComponentsDriver /> */}
       {/* <UseStateDrive /> */}
       {/* <PropsDriver /> */}
       {/* <PropsStateTogetherDriver /> */}
       {/* <UseEffectDrive /> */}
-      {/* <UseContextDrive /> */}
+      <UseContextDrive />
       {/* <UseRefDrive /> */}
       {/* <UseReducerDrive /> */}
       {/* <FormDrive /> */}
       {/* <CreatePostForm /> */}
-      
+      {/*  <AuthAppDrive /> */}
 
     </>
   )
