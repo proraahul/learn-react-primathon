@@ -7,6 +7,10 @@ const cartContext = createContext();
 const CartProvider = () => {
 const [cartItem, setCartItem] = useState([]);
 
+const AddTOCart = (item) =>{ 
+    setCartItem(prevItem => [...prevItem, item])
+}
+
 
 
 
