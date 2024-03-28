@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import CartProvider from './AddToCart/CartProvider'
 import CounterProvider from './counter/CounterProvider'
 // import ComponentA from './assignment/ComponentA'
 // import NameDisplay from './example/NameDisplay'
@@ -25,7 +26,9 @@ const UseContextDrive = () => {
     //     <TranslatedText />
     // </LanguageProvider>
 
-    <CounterProvider/>
+    // <CounterProvider/>
+
+    <CartProvider />
 
   )
 }
