@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { cartContext } from './CartProvider'
 
-const RemoveToCartButton = () => {
+const RemoveToCartButton = ({item}) => {
+  const { RemoveToCartButton } = useContext(cartContext);
+
+  const handleClick = () => {
+    RemoveToCartButton()
+  }
+    
   return (
-    <div>RemoveToCartButton</div>
+    <button onClick={handleClick}>Remove From Cart</button>
   )
 }
 
