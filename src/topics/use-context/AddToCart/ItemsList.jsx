@@ -4,15 +4,14 @@ import { cartContext } from './CartProvider';
 
 const ItemsList = () => {
 
-    const {cartItem} = useContext(cartContext);
+  const { cartItem } = useContext(cartContext);
+  // console.log(cartItem);
 
   return (
     <ul>
-        {
-            cartItem.map(item => (
-                <li key={item.id}>{item.name}</li>
-            ))
-        }
+      {
+        cartItem.map((ele, index) => <li key={ele.index}>{ele.name}</li>)
+      }
     </ul>
   )
 }
