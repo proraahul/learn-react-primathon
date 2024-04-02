@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import CartProvider from './AddToCart/CartProvider'
 import CounterProvider from './counter/CounterProvider'
+import DarkModeProvider from './DarkMode/DarkModeProvider'
 // import ComponentA from './assignment/ComponentA'
 // import NameDisplay from './example/NameDisplay'
 // import NameUpdate from './example/NameUpdate'
@@ -8,6 +9,7 @@ import CounterProvider from './counter/CounterProvider'
 import LanguageProvider from './LanguageContext/LanguageProvider'
 import LanguageSwitcher from './LanguageContext/LanguageSwitcher'
 import TranslatedText from './LanguageContext/TranslatedText'
+import NotificationProvider from './Notification/NotificationProvider'
 
 const UseContextDrive = () => {
 
@@ -28,7 +30,9 @@ const UseContextDrive = () => {
 
     // <CounterProvider/>
 
-    <CartProvider />
+    // <CartProvider />
+    // <NotificationProvider />
+    <DarkModeProvider />
 
   )
 }
