@@ -10,10 +10,9 @@ const InputFocus = () => {
     }
 
   return (
-    <div>
-
+    <div className="flex gap-3">
         <input type="text" className='border'  /* id='input-focus'*/ ref={inputRef}/> 
-        <button onClick={handleClick}>Focus Input</button>
+        <button onClick={handleClick} className='border p-2 bg-teal-600'>Focus Input</button>
 
     </div>
   )
