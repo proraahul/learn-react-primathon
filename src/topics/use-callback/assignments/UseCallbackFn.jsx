@@ -31,12 +31,19 @@ const UseCallbackFn = () => {
     );
   }
 
+  function CallbackButton() {
+    const handleClick = useCallback(() => {
+      console.log('Button clicked');
+    }, []);
+    return <button onClick={handleClick}>Click me</button>;
+  }
 
 
   return (
     <>
       <MyComponent />
       <MyComponent1 />
+      <CallbackButton />
     </>
   )
 }
