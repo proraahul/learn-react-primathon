@@ -6,8 +6,8 @@ import UseCallbackFn from './assignments/useCallbackFn';
 const UseCallBackDrive = () => {
   return (
     <div>
-      <Callbackhook />
-        {/* <UseCallbackFn /> */}
+      {/* <Callbackhook /> */}
+        <UseCallbackFn />
     </div>
   )
 }
