@@ -38,12 +38,25 @@ const UseCallbackFn = () => {
     return <button onClick={handleClick}>Click me</button>;
   }
 
+  function EnterKeyListener() {
+    const handleKeyPress = useCallback((e) => {
+      if (e.key === 'Enter') {
+        console.log('Enter key pressed');
+      }
+    }, []);
+    return (
+      <div className='p-3 m-5'>
+        <input type="text" onKeyPress={handleKeyPress} className='border'/>
+      </div>
+    )
+  }
 
   return (
     <>
       <MyComponent />
       <MyComponent1 />
       <CallbackButton />
+      <EnterKeyListener />
     </>
   )
 }
