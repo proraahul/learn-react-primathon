@@ -1,12 +1,3 @@
-import PptExamples from "./assignments/PptProps/PptExamples";
-
-const PropsDriver = () => {
-
-    return (
-        <PptExamples />
-    )
-
-
-};
+const PropsDriver = () => {};
 
 export default PropsDriver;

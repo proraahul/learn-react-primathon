@@ -1,5 +1,4 @@
-import React from 'react'
-import PptExamples from './assignments/PptExample.jsx/PptExamples';
+import PptExamples from './assignments/PptExample.jsx/PptExamples'
 
 const UseStateDrive = () => {
   return (
@@ -9,4 +8,4 @@ const UseStateDrive = () => {
   )
 }
 
-export default UseStateDrive;
+export default UseStateDrive

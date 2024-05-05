@@ -1,15 +1,12 @@
-import React from 'react';
-import Callbackhook from './assignments/CallbackHook';
-import UseCallbackFn from './assignments/useCallbackFn';
+import React from 'react'
+import UseCallbackFn from './assignments/UseCallbackFn'
 
-
-const UseCallBackDrive = () => {
+const UseCallbackDrive = () => {
   return (
     <div>
-      {/* <Callbackhook /> */}
         <UseCallbackFn />
     </div>
   )
 }
 
-export default UseCallBackDrive
+export default UseCallbackDrive

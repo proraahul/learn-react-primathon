@@ -28,7 +28,7 @@ const PptExample = () => {
     }, [count]);
 
     return (
-      <div>
+      <div className='border m-5 p-5'>
         <p>Count: {count}</p>
         <button onClick={() => setCount((prevCount) => prevCount + 1)}>Increment Title</button>
       </div>
@@ -593,21 +593,21 @@ const PptExample = () => {
 
   return (
       <div>
-        {/* <MyComponent /> */}
+        <MyComponent />
         <Timer/>
-        {/* <FormComponent /> */}
-        {/* <WindowSizeTracker /> */}
-        {/* <QuoteComponent /> */}
+        <FormComponent />
+        <WindowSizeTracker />
+        <QuoteComponent />
         {/* <InfiniteScroll /> */}
-        {/* <LocalStorageComponent /> */}
+        <LocalStorageComponent />
         {/* <GeolocationComponent /> */}
-        {/* <SearchComponent /> */}
+        <SearchComponent />
         {/* <ChartComponent /> */}
-        {/* <PaginationComponent /> */}
-        {/* <DelayedActionComponent   /> */}
-        {/* <OnlineStatusComponent /> */}
-        {/* <PaginationDataComponent /> */}
-        {/* <RandomImageComponent /> */}
+        <PaginationComponent />
+        <DelayedActionComponent   />
+        <OnlineStatusComponent />
+        <PaginationDataComponent />
+        <RandomImageComponent />
         {/* <TodoListApp /> */}
       </div>
   )

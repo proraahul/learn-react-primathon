@@ -4,8 +4,7 @@ import PptExample from './assignments/PptExample'
 const UseEffectDrive = () => {
   return (
     <div>
-      {/* <BasicFetch /> */}
-      <PptExample />
+        <PptExample />
     </div>
   )
 }
